@@ -7,10 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turtle Sketch</title>
     <script src="p5.js"></script>
-    <script src="sketch.js"></script>
+    <script src="sketch.js" defer></script>
+    <script src="p5turtle-parser.js" defer></script>
 </head>
 
 <body>
+    <form id="prog-form">
+        <textarea cols=40 rows=20 id="user-prog" name="prog"></textarea>
+        <button type="submit">Run Program</button>
+    </form>
+    <script>
+        // run turtle parser on input
+        function runTurtle(e) {
+            console.log('running turtle')
+            e.preventDefault()
+
+            const prog = (p) => {
+                p.setup = function () {
+                    p.createCanvas(400, 400)
+                };
+                const userFn = new Function(e.target.prog.value);
+                p.draw = function () {
+                    if (p.mouseIsPressed) {
+                        p.fill(0);
+                    } else {
+                        p.fill(255);
+                    }
+                    p.ellipse(p.mouseX, p.mouseY, 80, 80);
+                }
+                console.log(p.draw.toString())
+            }
+            new p5(prog);
+        }
+
+        //assign submit functionality
+        document.querySelector('#prog-form').onsubmit = runTurtle
+
+    </script>
 </body>
 
 </html>
