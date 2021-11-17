@@ -5,10 +5,9 @@ const canvas = document.getElementById('turtle-canvas');
 
 const turtle = new Turtle(canvas);
 function runTurtle(e) {
-  console.log('running turtle');
   e.preventDefault();
-  turtle.parse();
-  turtle.drawLine(0, 0, 200, 100);
+  const prog = e.target.prog.value;
+  turtle.parse(prog);
 }
 
 document.querySelector('#prog-form').onsubmit = runTurtle;

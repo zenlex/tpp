@@ -28,18 +28,67 @@
 export default class Turtle {
   constructor(canvas) {
     this.canvas = canvas;
-    this.context = this.canvas.getContext('2d');
+    this.ctx = this.canvas.getContext('2d');
+    this.pos = {'x': 0, 'y': 0};
+    this.commands = new Map();
   }
 
-  parse() {
-    const testNode = document.createElement('h1').textContent = 'Hello World';
-    document.querySelector('body').append(testNode);
+  parse(input) {
+    console.log(`parsing: ${input}`);
+    this.south(200);
+    this.east(200);
+    this.north(200);
+    this.west(200);
+    // write parser here
+    // parser should finish by calling appropriate class methods to render
   }
+
+  /* ------------------------------------
+        COMMAND MAP
+    -----------------------------------*/
+  setCommand(inputChar, method) {
+    this.commands.set(inputChar, method);
+  }
+
+  north(dist) {
+    const newY = this.pos.y - dist;
+    this.ctx.moveTo(this.pos.x, this.pos.y);
+    this.ctx.lineTo(this.pos.x, newY);
+    this.ctx.stroke();
+    this.pos.y = newY;
+  }
+
+  south(dist) {
+    const newY = this.pos.y + dist;
+    this.ctx.moveTo(this.pos.x, this.pos.y);
+    this.ctx.lineTo(this.pos.x, newY);
+    this.ctx.stroke();
+    this.pos.y = newY;
+  }
+
+  east(dist) {
+    const newX = this.pos.x + dist;
+    this.ctx.moveTo(this.pos.x, this.pos.y);
+    this.ctx.lineTo(newX, this.pos.y);
+    this.ctx.stroke();
+    this.pos.x = newX;
+  }
+
+  west(dist) {
+    const newX = this.pos.x - dist;
+    this.ctx.moveTo(this.pos.x, this.pos.y);
+    this.ctx.lineTo(newX, this.pos.y);
+    this.ctx.stroke();
+    this.pos.x = newX;
+  }
+  /* ------------------------------------
+        AVAILABLE CANVAS JS METHODS
+    ----------------------------------*/
 
   drawLine(startX, startY, endX, endY) {
-    this.context.moveTo(startX, startY);
-    this.context.lineTo(endX, endY);
-    this.context.stroke();
+    this.ctx.moveTo(startX, startY);
+    this.ctx.lineTo(endX, endY);
+    this.ctx.stroke();
   }
 };
 
