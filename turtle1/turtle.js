@@ -31,6 +31,7 @@ export default class Turtle {
     this.ctx = this.canvas.getContext('2d');
     this.pos = {'x': 0, 'y': 0};
     this.commands = new Map();
+    this._penDown = false;
   }
 
   parse(input) {
@@ -46,39 +47,47 @@ export default class Turtle {
   /* ------------------------------------
         COMMAND MAP
     -----------------------------------*/
-  setCommand(inputChar, method) {
-    this.commands.set(inputChar, method);
+  set draw(value) {
+    this._penDown = value;
   }
 
   north(dist) {
     const newY = this.pos.y - dist;
-    this.ctx.moveTo(this.pos.x, this.pos.y);
-    this.ctx.lineTo(this.pos.x, newY);
-    this.ctx.stroke();
+    if (this._penDown) {
+      this.drawLine(this.pos.x, this.pos.y, this.pos.x, newY);
+    } else {
+      this.ctx.moveTo(this.pos.x, newY);
+    }
     this.pos.y = newY;
   }
 
   south(dist) {
     const newY = this.pos.y + dist;
-    this.ctx.moveTo(this.pos.x, this.pos.y);
-    this.ctx.lineTo(this.pos.x, newY);
-    this.ctx.stroke();
+    if (this._penDown) {
+      this.drawLine(this.pos.x, this.pos.y, this.pos.x, newY);
+    } else {
+      this.ctx.moveTo(this.pos.x, newY);
+    }
     this.pos.y = newY;
   }
 
   east(dist) {
     const newX = this.pos.x + dist;
-    this.ctx.moveTo(this.pos.x, this.pos.y);
-    this.ctx.lineTo(newX, this.pos.y);
-    this.ctx.stroke();
+    if (this._penDown) {
+      this.drawLine(this.pos.x, this.pos.y, newX, this.pos.y);
+    } else {
+      this.ctx.moveTo(newX, this.pos.y);
+    }
     this.pos.x = newX;
   }
 
   west(dist) {
     const newX = this.pos.x - dist;
-    this.ctx.moveTo(this.pos.x, this.pos.y);
-    this.ctx.lineTo(newX, this.pos.y);
-    this.ctx.stroke();
+    if (this._penDown) {
+      this.drawLine(this.pos.x, this.pos.y, newX, this.pos.y);
+    } else {
+      this.ctx.moveTo(newX, this.pos.y);
+    }
     this.pos.x = newX;
   }
   /* ------------------------------------

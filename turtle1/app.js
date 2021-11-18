@@ -8,7 +8,15 @@ function runTurtle(e) {
   e.preventDefault();
   const prog = e.target.prog.value;
   turtle.parse(prog);
+  testSquare(100);
 }
 
 document.querySelector('#prog-form').onsubmit = runTurtle;
 
+function testSquare(dist) {
+  turtle.draw = true;
+  turtle.east(dist);
+  turtle.south(dist);
+  turtle.west(dist);
+  turtle.north(dist);
+}
