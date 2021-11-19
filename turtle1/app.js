@@ -18,8 +18,8 @@ document.querySelector('#prog-form').onsubmit = runTurtle;
 -------------------------------*/
 function testSquare(dist) {
   turtle.draw = true;
-  turtle.east(dist);
-  turtle.south(dist);
-  turtle.west(dist);
-  turtle.north(dist);
+  turtle.e(dist);
+  turtle.s(dist);
+  turtle.w(dist);
+  turtle.n(dist);
 }
