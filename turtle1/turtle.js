@@ -36,12 +36,31 @@ export default class Turtle {
 
   parse(input) {
     console.log(`parsing: ${input}`);
-    this.south(200);
-    this.east(200);
-    this.north(200);
-    this.west(200);
     // write parser here
-    // parser should finish by calling appropriate class methods to render
+    /* ----------------------------------
+        LEXER
+    ------------------------------------*/
+    function lexInput(raw) {
+      const lines = raw.split('\n');
+
+      const comPairs = lines.map((line) => line.split(' '));
+
+      return comPairs;
+    }
+
+    const userCommands = lexInput(input);
+
+    /* --------------------------------------
+        PARSER
+    ---------------------------------------*/
+    // strip comments
+    // filter out invalid characters / sequences
+
+    /* --------------------------------------
+        TRANSPILER
+    ---------------------------------------*/
+    // iterate through parsed command array
+    // switch/case or if chain the command and then call appropriate funcs with args
   }
 
   /* ------------------------------------
@@ -91,7 +110,7 @@ export default class Turtle {
     this.pos.x = newX;
   }
   /* ------------------------------------
-        AVAILABLE CANVAS JS METHODS
+        JS CANVAS HELPERS
     ----------------------------------*/
 
   drawLine(startX, startY, endX, endY) {

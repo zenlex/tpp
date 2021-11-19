@@ -13,6 +13,9 @@ function runTurtle(e) {
 
 document.querySelector('#prog-form').onsubmit = runTurtle;
 
+/* -------------------------------
+    HELPER FUNCTIONS
+-------------------------------*/
 function testSquare(dist) {
   turtle.draw = true;
   turtle.east(dist);
