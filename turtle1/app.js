@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable require-jsdoc */
 import Turtle from './turtle.js';
 
@@ -8,7 +9,6 @@ function runTurtle(e) {
   e.preventDefault();
   const prog = e.target.prog.value;
   turtle.parse(prog);
-  testSquare(100);
 }
 
 document.querySelector('#prog-form').onsubmit = runTurtle;

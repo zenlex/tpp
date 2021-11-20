@@ -14,38 +14,7 @@ export default class Turtle {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.pos = {'x': 0, 'y': 0};
-    this.commands = new Map();
     this._penDown = false;
-  }
-
-  parse(input) {
-    console.log(`parsing: ${input}`);
-    // write parser here
-    /* ----------------------------------
-        LEXER
-    ------------------------------------*/
-    function lexInput(raw) {
-      const lines = raw.split('\n');
-
-      const comPairs = lines.map((line) => line.split(' '));
-
-      return comPairs;
-    }
-
-    const userCommands = lexInput(input);
-    console.log(userCommands);
-
-    /* --------------------------------------
-        PARSER
-    ---------------------------------------*/
-    // strip comments
-    // filter out invalid characters / sequences
-
-    /* --------------------------------------
-        TRANSPILER
-    ---------------------------------------*/
-    // iterate through parsed command array
-    // switch/case or if chain the command and then call appropriate funcs with args
   }
 
   /* ------------------------------------
@@ -56,6 +25,7 @@ export default class Turtle {
   }
 
   n(dist) {
+    console.log('running N');
     const newY = this.pos.y - dist;
     if (this._penDown) {
       this.drawLine(this.pos.x, this.pos.y, this.pos.x, newY);
@@ -94,6 +64,60 @@ export default class Turtle {
     }
     this.pos.x = newX;
   }
+
+  parse(input) {
+    console.log(`parsing: ${input}`);
+    // write parser here
+    /* ----------------------------------
+        LEXER
+    ------------------------------------*/
+    function lexInput(raw) {
+      const lines = raw.split('\n');
+
+      const comPairs = lines.map((line) => line.split(' '));
+
+      return comPairs;
+    }
+
+    const userCommands = lexInput(input);
+    console.log(userCommands);
+
+    /* --------------------------------------
+        PARSER
+    ---------------------------------------*/
+    // strip comments
+    // filter out invalid characters / sequences
+    function sanitize(commands) {
+      return commands;
+    }
+
+    const cleanProg = sanitize(userCommands);
+    /* --------------------------------------
+        TRANSPILER
+    ---------------------------------------*/
+    // iterate through parsed command array
+    // switch/case or if chain the command and then call appropriate funcs with args
+    function transpile(commands) {
+      function callCom(com) {
+        switch (com[0]) {
+          case 'N':
+            console.log('calling N from transpile');
+            break;
+          case 'D':
+            console.log('calling pen down');
+            break;
+        }
+      }
+      for (const com of commands) {
+        console.log(com);
+        callCom(com);
+      }
+    }
+
+    transpile(cleanProg);
+  }
+
+
   /* ------------------------------------
         JS CANVAS HELPERS
     ----------------------------------*/
