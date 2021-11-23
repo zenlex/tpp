@@ -97,22 +97,34 @@ export default class Turtle {
     ---------------------------------------*/
     // iterate through parsed command array
     // switch/case or if chain the command and then call appropriate funcs with args
-    function transpile(commands) {
-      function callCom(com) {
+    const transpile = (commands) => {
+      const callCom = (com) => {
         switch (com[0]) {
           case 'N':
-            console.log('calling N from transpile');
+            this.n(com[1]);
+            break;
+          case 'E':
+            this.e(com[1]);
+            break;
+          case 'S':
+            this.s(com[1]);
+            break;
+          case 'W':
+            this.w(com[1]);
             break;
           case 'D':
-            console.log('calling pen down');
+            this._penDown = !this._penDown;
+            console.log('_penDown = ', this._penDown);
             break;
+          default:
+            console.log('no valid commands parsed');
         }
-      }
+      };
       for (const com of commands) {
-        console.log(com);
+        console.log('Calling Commands:', com);
         callCom(com);
       }
-    }
+    };
 
     transpile(cleanProg);
   }
@@ -127,5 +139,6 @@ export default class Turtle {
     this.ctx.lineTo(endX, endY);
     this.ctx.stroke();
   }
-};
+}; // end class definition Turtle
+
 
