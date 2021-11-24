@@ -14,6 +14,7 @@ export default class Turtle {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.pos = {'x': 0, 'y': 0};
+    this.destPos = {'x': 0, 'y': 0};
     this._penDown = false;
   }
 
@@ -24,45 +25,41 @@ export default class Turtle {
     this._penDown = value;
   }
 
+  updatePos({x, y}) {
+    this.pos.x = x;
+    this.pos.y = y;
+  }
+
   n(dist) {
-    console.log('running N');
-    const newY = this.pos.y - dist;
+    this.destPos = {x: this.pos.x, y: this.pos.y - dist};
     if (this._penDown) {
-      this.drawLine(this.pos.x, this.pos.y, this.pos.x, newY);
-    } else {
-      this.ctx.moveTo(this.pos.x, newY);
+      this.drawLine(this.pos, this.destPos);
     }
-    this.pos.y = newY;
+    this.updatePos(this.destPos);
   }
 
   s(dist) {
-    const newY = this.pos.y + dist;
+    this.destPos = {x: this.pos.x, y: this.pos.y + dist};
     if (this._penDown) {
-      this.drawLine(this.pos.x, this.pos.y, this.pos.x, newY);
-    } else {
-      this.ctx.moveTo(this.pos.x, newY);
+      this.drawLine(this.pos, this.destPos);
     }
-    this.pos.y = newY;
+    this.updatePos(this.destPos);
   }
 
   e(dist) {
-    const newX = this.pos.x + dist;
+    this.destPos = {x: this.pos.x + dist, y: this.pos.y};
     if (this._penDown) {
-      this.drawLine(this.pos.x, this.pos.y, newX, this.pos.y);
-    } else {
-      this.ctx.moveTo(newX, this.pos.y);
+      this.drawLine(this.pos, this.destPos);
     }
-    this.pos.x = newX;
+    this.updatePos(this.destPos);
   }
 
   w(dist) {
-    const newX = this.pos.x - dist;
+    this.destPos = {x: this.pos.x - dist, y: this.pos.y};
     if (this._penDown) {
-      this.drawLine(this.pos.x, this.pos.y, newX, this.pos.y);
-    } else {
-      this.ctx.moveTo(newX, this.pos.y);
+      this.drawLine(this.pos, this.destPos);
     }
-    this.pos.x = newX;
+    this.updatePos(this.destPos);
   }
 
   parse(input) {
@@ -88,6 +85,12 @@ export default class Turtle {
     // strip comments
     // filter out invalid characters / sequences
     function sanitize(commands) {
+      // make sure second value is number
+      for (const com of commands) {
+        if (com.length > 1) {
+          com[1] = Number(com[1]);
+        }
+      }
       return commands;
     }
 
@@ -99,6 +102,7 @@ export default class Turtle {
     // switch/case or if chain the command and then call appropriate funcs with args
     const transpile = (commands) => {
       const callCom = (com) => {
+        console.log('calling commands:', com);
         switch (com[0]) {
           case 'N':
             this.n(com[1]);
@@ -113,15 +117,17 @@ export default class Turtle {
             this.w(com[1]);
             break;
           case 'D':
-            this._penDown = !this._penDown;
+            this._penDown = true;
             console.log('_penDown = ', this._penDown);
             break;
+          case 'U':
+            this._penDown = false;
+            console.log('_penDown = ', this._penDown);
           default:
             console.log('no valid commands parsed');
         }
       };
       for (const com of commands) {
-        console.log('Calling Commands:', com);
         callCom(com);
       }
     };
@@ -134,9 +140,10 @@ export default class Turtle {
         JS CANVAS HELPERS
     ----------------------------------*/
 
-  drawLine(startX, startY, endX, endY) {
-    this.ctx.moveTo(startX, startY);
-    this.ctx.lineTo(endX, endY);
+  drawLine(startPos, endPos) {
+    console.log(`drawing line from (${startPos.x}, ${startPos.y}) to (${endPos.x}, ${endPos.y})`);
+    this.ctx.moveTo(startPos.x, startPos.y);
+    this.ctx.lineTo(endPos.x, endPos.y);
     this.ctx.stroke();
   }
 }; // end class definition Turtle
