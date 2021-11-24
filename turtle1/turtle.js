@@ -63,7 +63,6 @@ export default class Turtle {
   }
 
   parse(input) {
-    console.log(`parsing: ${input}`);
     // write parser here
     /* ----------------------------------
         LEXER
@@ -77,7 +76,6 @@ export default class Turtle {
     }
 
     const userCommands = lexInput(input);
-    console.log(userCommands);
 
     /* --------------------------------------
         PARSER
@@ -102,7 +100,6 @@ export default class Turtle {
     // switch/case or if chain the command and then call appropriate funcs with args
     const transpile = (commands) => {
       const callCom = (com) => {
-        console.log('calling commands:', com);
         switch (com[0]) {
           case 'N':
             this.n(com[1]);
@@ -118,11 +115,9 @@ export default class Turtle {
             break;
           case 'D':
             this._penDown = true;
-            console.log('_penDown = ', this._penDown);
             break;
           case 'U':
             this._penDown = false;
-            console.log('_penDown = ', this._penDown);
           default:
             console.log('no valid commands parsed');
         }
@@ -141,7 +136,6 @@ export default class Turtle {
     ----------------------------------*/
 
   drawLine(startPos, endPos) {
-    console.log(`drawing line from (${startPos.x}, ${startPos.y}) to (${endPos.x}, ${endPos.y})`);
     this.ctx.moveTo(startPos.x, startPos.y);
     this.ctx.lineTo(endPos.x, endPos.y);
     this.ctx.stroke();
