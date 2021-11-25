@@ -1,11 +1,6 @@
-/* eslint-disable max-len */
-/* eslint-disable require-jsdoc */
-/* eslint-disable no-unused-vars */
+
 /**
- * Write a parser for a simple language
- *  for turtle graphics manipulation
- *
- * Using p5.js for the turtle graphics engine
+ * Write a DSL parser for a simple turtle graphics engine
  */
 
 
@@ -106,12 +101,19 @@ export default class Turtle {
     // filter out invalid characters / sequences
     function sanitize(commands) {
       // make sure second value is number
-      const clean = commands.map((com) => {
-        if (com.length > 1) {
-          com[1] = Number(com[1]);
-        }
-        return com;
-      });
+      const ignoreChars = ['', '\n', '\s', '#'];
+      const clean =
+        commands.
+            filter((com) => !ignoreChars.includes(com[0]))
+            .map((com, index) => {
+              if (com.length > 1) {
+                com[1] = Number(com[1]);
+                if (isNaN(com[1])) {
+                  alert(`invalid arg for command ${com[0]} at index ${index}, expected Number`);
+                }
+              }
+              return com;
+            });
 
       return clean;
     }
