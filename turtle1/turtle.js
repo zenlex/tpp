@@ -1,6 +1,7 @@
 
 /**
  * Write a DSL parser for a simple turtle graphics engine
+ * 
  */
 
 
@@ -136,7 +137,15 @@ export default class Turtle {
       }
     };
 
-    transpile(cleanProg);
+    try{
+      if(cleanProg.length > 0){
+      transpile(cleanProg);
+    }else{
+      alert('no valid commands found');
+    }
+    }catch(err){
+      console.log(err);
+    }
   }
 
 
