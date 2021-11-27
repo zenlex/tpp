@@ -24,7 +24,8 @@ export default class Turtle {
       { name: 'D', arg: false, handler: this.pen, desc: 'Pen Down' },
       { name: 'U', arg: false, handler: this.pen, desc: 'Pen Up' },
       { name: 'T', arg: true, handler: this.pen, desc: 'Change Color' },
-      { name: 'O', arg: true, handler: this.pen, desc: 'Change Opacity(0-1)' }
+      { name: 'O', arg: true, handler: this.pen, desc: 'Change Opacity(0-1)' },
+      { name: 'C', arg: true, handler: this.shape, desc: 'Draw Circle(r)' }
     ]
 
     this.colors = [
@@ -45,6 +46,7 @@ export default class Turtle {
     this.updatePos = this.updatePos.bind(this)
     this.move = this.move.bind(this)
     this.pen = this.pen.bind(this)
+    this.shape = this.shape.bind(this)
   }
 
   /* ------------------------------------
@@ -140,6 +142,16 @@ export default class Turtle {
     }
   };
 
+  shape (type, size) {
+    switch (type) {
+      case 'C':
+        this.drawCircle(this.pos.x, this.pos.y, size)
+        break
+      default:
+        alert('invalid shape')
+    }
+  }
+
   run (input) {
     /* ----------------------------------
         LEXER
@@ -209,6 +221,12 @@ export default class Turtle {
   drawLine (startPos, endPos) {
     this.ctx.moveTo(startPos.x, startPos.y)
     this.ctx.lineTo(endPos.x, endPos.y)
+    this.ctx.stroke()
+  }
+
+  drawCircle (cx, cy, r) {
+    this.ctx.beginPath()
+    this.ctx.arc(cx, cy, r, 0 * Math.PI, 2 * Math.PI)
     this.ctx.stroke()
   }
 }; // end class definition Turtle
