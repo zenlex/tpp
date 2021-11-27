@@ -17,12 +17,12 @@ export default class Turtle {
     this._penDown = false
 
     this.commands = [
-      { name: 'N', arg: true, handler: this.move },
-      { name: 'E', arg: true, handler: this.move },
-      { name: 'S', arg: true, handler: this.move },
-      { name: 'W', arg: true, handler: this.move },
-      { name: 'D', arg: false, handler: this.pen },
-      { name: 'U', arg: false, handler: this.pen }
+      { name: 'N', arg: true, handler: this.move, desc: 'Move North' },
+      { name: 'E', arg: true, handler: this.move, desc: 'Move East' },
+      { name: 'S', arg: true, handler: this.move, desc: 'Move South' },
+      { name: 'W', arg: true, handler: this.move, desc: 'Move West' },
+      { name: 'D', arg: false, handler: this.pen, desc: 'Pen Down' },
+      { name: 'U', arg: false, handler: this.pen, desc: 'Pen Up' }
     ]
 
     this.clearCanvas = this.clearCanvas.bind(this)

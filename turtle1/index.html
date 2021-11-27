@@ -5,16 +5,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Turtle Sketch</title>
+  <link href="style.css" rel="stylesheet">
+  <title>Turtle Graphics</title>
 </head>
 
 <body>
-  <form id="prog-form">
-    <textarea cols=40 rows=20 id="user-prog" name="prog"></textarea>
-    <button type="submit">Run Program</button>
-    <button type="button" id="clear-btn">Clear Canvas</button>
-  </form>
-  <canvas id="turtle-canvas" width=400 height=400></canvas>
+  <header>
+    <h1>Turtle Graphics Engine</h1>
+    <h4>an exercise in extensible domain specific languages</h4>
+    <h4>from The Pragmatic Programmer by David Thomas and Andrew Hunt</h4>
+  </header>
+  <main>
+    <div class='flexbox'>
+      <form id="prog-form">
+        <textarea cols=10 rows=20 id="user-prog" name="prog"></textarea>
+        <div class='btn-cont'>
+          <button type="submit">Run Program</button>
+          <button type="button" id="clear-btn">Clear Canvas</button>
+        </div>
+      </form>
+      <div id='comlist'></div>
+      <canvas id="turtle-canvas" width=800 height=400></canvas>
+    </div>
+  </main>
 </body>
 <script type='module'>
   import Turtle from './turtle.js'
@@ -31,6 +44,14 @@
   document.querySelector('#prog-form').onsubmit = runTurtle
   document.querySelector('#clear-btn').onclick = turtle.clearCanvas
 
+  const comlist = document
+    .querySelector('#comlist')
+    .appendChild(document.createElement('ul'));
+
+  turtle.commands.forEach((item) => {
+    const newItem = comlist.appendChild(document.createElement('li'))
+    newItem.innerHTML = `<span>${item.name} ${item.arg ? '#' : ''} - ${item.desc}</span>`
+  })
 </script>
 
 </html>
