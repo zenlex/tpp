@@ -25,10 +25,10 @@ export default class Turtle {
       { name: 'U', arg: false, handler: this.pen, desc: 'Pen Up' },
       { name: 'T', arg: true, handler: this.pen, desc: 'Change Color' },
       { name: 'K', arg: true, handler: this.pen, desc: 'Change Thickness' },
-      { name: 'O', arg: true, handler: this.pen, desc: 'Change Opacity(0-1)' },
-      { name: 'C', arg: true, handler: this.shape, desc: 'Draw Circle(r)' },
-      { name: 'R', arg: true, handler: this.shape, desc: 'Draw Square(s)' },
-      { name: 'F', arg: true, handler: this.shape, desc: 'Draw Square(s)' }
+      { name: 'O', arg: true, handler: this.pen, desc: 'Change Opacity (0-1)' },
+      { name: 'C', arg: true, handler: this.shape, desc: 'Draw Circle (r)' },
+      { name: 'R', arg: true, handler: this.shape, desc: 'Draw Square (s)' },
+      { name: 'F', arg: true, handler: this.shape, desc: 'Draw Square (s)' }
     ]
 
     this.colors = [

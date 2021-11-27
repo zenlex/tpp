@@ -23,16 +23,17 @@
         <textarea cols=10 rows=20 id="user-prog" name="prog"></textarea>
       </form>
       <div id='com-cont'>
-        <h2>commands</h2>
-        <div id='comlist'></div>
+        <div id='comlist'>
+          <h3>commands</h3>
+        </div>
         <div id='comnotes'>
-          <h4>Syntax:</h4>
+          <h3>Syntax:</h3>
           <ul>
             <li>'COM'<i>(space)[int]</i></li>
             <li>start comments with '#'</li>
           </ul>
           <div id="colors">
-            <h4>Color(T) Options:</h4>
+            <h3>Color(T) Options:</h3>
             <ol id="color-list"></ol>
           </div>
         </div>
@@ -53,7 +54,7 @@
   }
 
   function resizeView(canvas) {
-    let cw = window.innerWidth * (2 / 3);
+    let cw = window.innerWidth * (1 / 2);
     let ch = window.innerHeight * .8;
     turtle.resizeCanvas(canvas, cw, ch);
   };
