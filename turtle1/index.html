@@ -12,16 +12,16 @@
 <body>
   <header>
     <h1>Turtle Graphics Engine</h1>
-    <h4>an exercise in extensible domain specific languages</h4>
+    <h3>an exercise in extensible domain specific languages</h4>
   </header>
   <main>
     <div class='flexbox'>
       <form id="prog-form">
-        <textarea cols=10 rows=20 id="user-prog" name="prog"></textarea>
         <div class='btn-cont'>
           <button type="submit">Run Program</button>
           <button type="button" id="clear-btn">Clear Canvas</button>
         </div>
+        <textarea cols=10 rows=20 id="user-prog" name="prog"></textarea>
       </form>
       <div id='com-cont'>
         <h2>commands</h2>
@@ -35,9 +35,42 @@
               <p>
                 'COM'<i>(space)[int]</i>
               </p>
-                
+            </li>
+            <li>
+              <p>
+                start comments with '#'
+              </p>
             </li>
           </ul>
+          <div id="colors">
+            <h4>Color(T) Options:</h4>
+            <ol>
+              <li>
+                <div class='swatch leo'></div>
+                <span class='swatch-label'>1-Leo Blue</span>
+              </li>
+              <li>
+                <div class='swatch mike'></div>
+                <span class='swatch-label'>2-Mikey Orange</span>
+              </li>
+              <li>
+                <div class='swatch raph'></div>
+                <span class='swatch-label'>3-Raph Red</span>
+              </li>
+              <li>
+                <div class='swatch don'></div>
+                <span class='swatch-label'>4-Don Purple</span>
+              </li>
+              <li>
+                <div class='swatch splinter'></div>
+                <span class='swatch-label'>5-Splinter Brown</span>
+              </li>
+              <li>
+                <div class='swatch shredder'></div>
+                <span class='swatch-label'>6-Shredder Black</span>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
       <canvas id="turtle-canvas"></canvas>

@@ -38,7 +38,8 @@ export default class Turtle {
     console.log(`resize canvas called with width = ${width}`)
     canvas.width = width
     canvas.height = height
-    document.querySelector('textarea').style.height = canvas.height * 0.8
+    document.querySelector('textarea')
+      .style.height = (window.innerHeight * 0.5) + 'px'
   }
 
   clearCanvas () {

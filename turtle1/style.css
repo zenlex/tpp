@@ -1,10 +1,13 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Shadows Into Light', cursive;
 }
 
-body{
+body {
   background-image: url('vintage-concrete.png');
 }
 
@@ -17,21 +20,25 @@ main {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  justify-content:space-around;
+  justify-content: space-around;
   padding: 10px;
   flex-direction: column;
 }
 
 canvas {
   margin: 10px;
-  box-shadow: 1px 1px 5px rgba(25,25,25,.25);
-  flex-grow:0;
-  background:white;
+  box-shadow: 1px 1px 5px rgba(25, 25, 25, .25);
+  flex-grow: 0;
+  background: white;
 }
 
 .btn-cont {
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
+}
+
+#com-cont {
+  font-size: 20px;
 }
 
 #comlist {
@@ -40,19 +47,16 @@ canvas {
   justify-content: flex-start;
   align-items: center;
   min-width: 150px;
-  margin: 5px;
-  padding: 10px;
 }
 
 #com-cont h2 {
   text-align: center;
   text-decoration: underline;
-  text-transform:uppercase;
-  padding: 10px;
+  text-transform: uppercase;
 }
 
 
-#comnotes *{
+#comnotes * {
   text-align: center;
 }
 
@@ -76,7 +80,7 @@ header h4 {
 li {
   text-align: left;
   list-style: none;
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
 
 button {
@@ -84,21 +88,71 @@ button {
   padding: 5px;
   border: 1px solid darkslategrey;
   border-radius: 5px;
+  font-size: 20px;
 }
 
 #prog-form {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-@media screen and (min-width: 768px){
-  .flexbox{
+#colors li {
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left:2em;
+}
+
+.swatch {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.leo {
+  background-color: #2683c9;
+  color: #2683c9;
+}
+
+.mike {
+  background-color: #fda800;
+  color: #fda800;
+}
+
+.raph {
+  background-color: #ef4c4d;
+  color: #ef4c4d;
+}
+
+.don {
+  background-color: #8b049f;
+  color: #8b049f;
+}
+
+.splinter {
+  background-color: #b7875c;
+  color: #b7875c;
+}
+
+.shredder {
+  background-color: #000;
+  color: #000;
+
+}
+
+@media screen and (min-width: 768px) {
+  .flexbox {
     flex-direction: row;
-    align-items:flex-start;
+    align-items: flex-start;
   }
 
-  textarea{
+  textarea {
     margin: 10px;
+    font-size: 20px;
+  }
+
+  #colors li{
+    margin-left:unset;
   }
 }
