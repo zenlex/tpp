@@ -77,8 +77,16 @@ export default class Turtle {
   };
 
   updatePos ({ x, y }) {
-    this.pos.x = x < 0 ? this.canvas.width : x > this.canvas.width ? 0 : x
-    this.pos.y = y < 0 ? this.canvas.height : y > this.canvas.height ? 0 : y
+    this.pos.x = x < 0
+      ? this.canvas.width + x
+      : x > this.canvas.width
+        ? x - this.canvas.width
+        : x
+    this.pos.y = y < 0
+      ? this.canvas.height + y
+      : y > this.canvas.height
+        ? y - this.canvas.height
+        : y
   };
 
   move (dir, dist) {

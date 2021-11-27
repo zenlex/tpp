@@ -9,32 +9,49 @@
 
 body {
   background-image: url('vintage-concrete.png');
-  font-size:20px;
-}
-
-main {
-  margin: 10px;
-}
-
-.flexbox {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  justify-content: space-around;
-  padding: 10px;
-  flex-direction: column;
+  font-size: 20px;
 }
 
 canvas {
   box-shadow: 1px 1px 5px rgba(25, 25, 25, .25);
-  flex-grow: 0;
   background: white;
 }
 
-.btn-cont {
+header {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+button {
+  margin: 2px;
+  padding: 5px;
+  border: 1px solid darkslategrey;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+section {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+  padding: 10px;
+  flex-direction: column-reverse;
+}
+
+#prog-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #com-cont {
@@ -57,9 +74,8 @@ canvas {
   text-align: center;
   text-decoration: underline;
   text-transform: uppercase;
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
-
 
 #comnotes * {
   text-align: center;
@@ -69,45 +85,22 @@ canvas {
   color: darkslategrey;
 }
 
-header {
-  width: 100%;
+.btn-cont {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: px;
+  flex-direction: column-reverse;
 }
 
-header h4 {
-  margin: 5px auto;
-}
 
-li {
-  text-align: left;
-  list-style: none;
-  margin-bottom: 5px;
-}
 
-button {
-  margin: 2px;
-  padding: 5px;
-  border: 1px solid darkslategrey;
-  border-radius: 5px;
-  font-size: 20px;
-}
 
-#prog-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+
 
 #colors li {
-  display:flex;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-left:2em;
-  text-align:left;
+  margin-left: 2em;
+  text-align: left;
 }
 
 .swatch {
@@ -119,7 +112,7 @@ button {
 
 
 @media screen and (min-width: 768px) {
-  .flexbox {
+  section {
     flex-direction: row;
     align-items: flex-start;
   }
@@ -129,4 +122,8 @@ button {
     font-size: 20px;
   }
 
+  .btn-cont {
+    display: flex;
+    flex-direction: column;
+  }
 }

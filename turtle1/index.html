@@ -14,14 +14,8 @@
     <h1>Turtle Graphics Engine</h1>
     <h3>an exercise in extensible domain specific languages</h4>
   </header>
-  <main class='flexbox'>
-      <form id="prog-form">
-        <div class='btn-cont'>
-          <button type="submit">Run Program</button>
-          <button type="button" id="clear-btn">Clear Canvas</button>
-        </div>
-        <textarea cols=10 rows=20 id="user-prog" name="prog"></textarea>
-      </form>
+  <section>
+ 
       <div id='com-cont'>
         <div id='comlist'>
           <h3>commands</h3>
@@ -38,9 +32,15 @@
           </div>
         </div>
       </div>
+      <form id="prog-form">
+        <div class='btn-cont'>
+          <button type="submit">Run Program</button>
+          <button type="button" id="clear-btn">Clear Canvas</button>
+        </div>
+        <textarea cols=10 rows=20 id="user-prog" name="prog"></textarea>
+      </form>
       <canvas id="turtle-canvas"></canvas>
-  </main>
-</body>
+</section>
 <script type='module'>
   import Turtle from './turtle.js'
 
