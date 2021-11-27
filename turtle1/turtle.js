@@ -22,10 +22,24 @@ export default class Turtle {
       { name: 'S', arg: true, handler: this.move, desc: 'Move South' },
       { name: 'W', arg: true, handler: this.move, desc: 'Move West' },
       { name: 'D', arg: false, handler: this.pen, desc: 'Pen Down' },
-      { name: 'U', arg: false, handler: this.pen, desc: 'Pen Up' }
+      { name: 'U', arg: false, handler: this.pen, desc: 'Pen Up' },
+      { name: 'T', arg: true, handler: this.pen, desc: 'Change Color' }
     ]
 
+    this.colors = [
+      { name: 'Black', hex: '#000' },
+      { name: 'Leo Blue', hex: '#2683c9' },
+      { name: 'Mikey Orange', hex: '#fda800' },
+      { name: 'Raph Red', hex: '#ef4c4d' },
+      { name: 'Don Purple', hex: '#8b049f' },
+      { name: 'Splinter Brown', hex: '#b7875c' },
+      { name: 'Shredder Silver', hex: '#888' }
+    ]
+
+    this.color = this.colors[0]
+
     this.clearCanvas = this.clearCanvas.bind(this)
+    this.changeColor = this.changeColor.bind(this)
     this.updatePos = this.updatePos.bind(this)
     this.move = this.move.bind(this)
     this.pen = this.pen.bind(this)
@@ -45,6 +59,8 @@ export default class Turtle {
   clearCanvas () {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     this.pos = { x: 0, y: 0 }
+    this.color = this.colors[0]
+    this.ctx.strokeStyle = this.color.hex
     this.ctx.beginPath()
   };
 
@@ -83,13 +99,26 @@ export default class Turtle {
     }
   };
 
-  pen (dir) {
+  changeColor (index) {
+    if (index < 0 || index > this.colors.length - 1) {
+      alert(`invalid color choice - ${index} of range`)
+      return
+    }
+    this.color = this.colors[index]
+    this.ctx.strokeStyle = this.color.hex
+    this.ctx.beginPath()
+  };
+
+  pen (dir, arg) {
     switch (dir) {
       case 'U':
         this._penDown = false
         break
       case 'D':
         this._penDown = true
+        break
+      case 'T':
+        this.changeColor(arg)
         break
       default:
         console.log('pen called with invalid dir')

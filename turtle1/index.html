@@ -14,8 +14,7 @@
     <h1>Turtle Graphics Engine</h1>
     <h3>an exercise in extensible domain specific languages</h4>
   </header>
-  <main>
-    <div class='flexbox'>
+  <main class='flexbox'>
       <form id="prog-form">
         <div class='btn-cont'>
           <button type="submit">Run Program</button>
@@ -27,54 +26,18 @@
         <h2>commands</h2>
         <div id='comlist'></div>
         <div id='comnotes'>
-          <h4>
-            Syntax:
-          </h4>
+          <h4>Syntax:</h4>
           <ul>
-            <li>
-              <p>
-                'COM'<i>(space)[int]</i>
-              </p>
-            </li>
-            <li>
-              <p>
-                start comments with '#'
-              </p>
-            </li>
+            <li>'COM'<i>(space)[int]</i></li>
+            <li>start comments with '#'</li>
           </ul>
           <div id="colors">
             <h4>Color(T) Options:</h4>
-            <ol>
-              <li>
-                <div class='swatch leo'></div>
-                <span class='swatch-label'>1-Leo Blue</span>
-              </li>
-              <li>
-                <div class='swatch mike'></div>
-                <span class='swatch-label'>2-Mikey Orange</span>
-              </li>
-              <li>
-                <div class='swatch raph'></div>
-                <span class='swatch-label'>3-Raph Red</span>
-              </li>
-              <li>
-                <div class='swatch don'></div>
-                <span class='swatch-label'>4-Don Purple</span>
-              </li>
-              <li>
-                <div class='swatch splinter'></div>
-                <span class='swatch-label'>5-Splinter Brown</span>
-              </li>
-              <li>
-                <div class='swatch shredder'></div>
-                <span class='swatch-label'>6-Shredder Black</span>
-              </li>
-            </ol>
+            <ol id="color-list"></ol>
           </div>
         </div>
       </div>
       <canvas id="turtle-canvas"></canvas>
-    </div>
   </main>
 </body>
 <script type='module'>
@@ -107,6 +70,20 @@
   turtle.commands.forEach((item) => {
     const newItem = comlist.appendChild(document.createElement('li'))
     newItem.innerHTML = `<span>${item.name} ${item.arg ? '#' : ''} - ${item.desc}</span>`
+  })
+
+  const colorList = document.querySelector('#color-list')
+  turtle.colors.forEach((color, index) => {
+    const newItem = colorList.appendChild(document.createElement('li'))
+
+    const swatch = newItem.appendChild(document.createElement('div'))
+    swatch.classList.add('swatch')
+    swatch.style.backgroundColor = color.hex
+
+    const label = newItem.appendChild(document.createElement('span'))
+    label.classList.add('swatch-label')
+    label.textContent = `${index}-${color.name}`
+
   })
 </script>
 
