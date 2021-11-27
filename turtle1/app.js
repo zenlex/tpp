@@ -7,7 +7,7 @@ const turtle = new Turtle(canvas)
 function runTurtle (e) {
   e.preventDefault()
   const prog = e.target.prog.value
-  turtle.parse(prog)
+  turtle.run(prog)
 }
 
 document.querySelector('#prog-form').onsubmit = runTurtle

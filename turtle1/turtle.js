@@ -1,8 +1,11 @@
 /* eslint-disable require-jsdoc */
 
 /**
- * Write a DSL parser for a simple turtle graphics engine
- *
+ * Domaine Specific Language parser
+ * for a simple turtle graphics engine
+ * Based on exercise in
+ * The Pragmatic Programmer by
+ * Dave Thomas and Andrew Hunt
  */
 
 export default class Turtle {
@@ -84,8 +87,7 @@ export default class Turtle {
     }
   };
 
-  parse (input) {
-    // write parser here
+  run (input) {
     /* ----------------------------------
         LEXER
     ------------------------------------ */
@@ -102,8 +104,6 @@ export default class Turtle {
     /* --------------------------------------
         PARSER
     --------------------------------------- */
-    // strip comments
-    // filter out invalid characters / sequences
     function sanitize (commands) {
       // make sure second value is number
       const ignoreChars = ['', '\n', ' ', '#']
@@ -127,8 +127,6 @@ export default class Turtle {
     /* --------------------------------------
         TRANSPILER
     --------------------------------------- */
-    // iterate through parsed command array
-
     const transpile = (comArr) => {
       for (const com of comArr) {
         const comObj = this.commands.find((command) => command.name === com[0])
@@ -153,7 +151,7 @@ export default class Turtle {
   }
 
   /* ------------------------------------
-        JS CANVAS HELPERS
+        CANVAS HELPERS
     ---------------------------------- */
 
   drawLine (startPos, endPos) {
