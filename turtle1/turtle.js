@@ -37,6 +37,8 @@ export default class Turtle {
 
   clearCanvas () {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    this.pos = { x: 0, y: 0 }
+    this.ctx.beginPath()
   };
 
   updatePos ({ x, y }) {
@@ -105,7 +107,6 @@ export default class Turtle {
         PARSER
     --------------------------------------- */
     function sanitize (commands) {
-      // make sure second value is number
       const ignoreChars = ['', '\n', ' ', '#']
       const clean =
         commands
