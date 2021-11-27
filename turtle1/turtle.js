@@ -33,12 +33,12 @@ export default class Turtle {
 
     this.colors = [
       { name: 'Black', hex: '#000' },
-      { name: 'Leo Blue', hex: '#2683c9' },
-      { name: 'Mikey Orange', hex: '#fda800' },
-      { name: 'Raph Red', hex: '#ef4c4d' },
-      { name: 'Don Purple', hex: '#8b049f' },
-      { name: 'Splinter Brown', hex: '#b7875c' },
-      { name: 'Shredder Silver', hex: '#888' },
+      { name: 'Leonardo', hex: '#2683c9' },
+      { name: 'Michelangelo', hex: '#fda800' },
+      { name: 'Raphael', hex: '#ef4c4d' },
+      { name: 'Donatello', hex: '#8b049f' },
+      { name: 'Splinter', hex: '#b7875c' },
+      { name: 'Shredder', hex: '#888' },
       { name: 'White', hex: '#FFF' },
       { name: 'Transparent', hex: 'rgba(0,0,0,0)' }
     ]
