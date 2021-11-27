@@ -25,7 +25,8 @@ export default class Turtle {
       { name: 'U', arg: false, handler: this.pen, desc: 'Pen Up' },
       { name: 'T', arg: true, handler: this.pen, desc: 'Change Color' },
       { name: 'O', arg: true, handler: this.pen, desc: 'Change Opacity(0-1)' },
-      { name: 'C', arg: true, handler: this.shape, desc: 'Draw Circle(r)' }
+      { name: 'C', arg: true, handler: this.shape, desc: 'Draw Circle(r)' },
+      { name: 'R', arg: true, handler: this.shape, desc: 'Draw Square(s)' }
     ]
 
     this.colors = [
@@ -147,6 +148,9 @@ export default class Turtle {
       case 'C':
         this.drawCircle(this.pos.x, this.pos.y, size)
         break
+      case 'R':
+        this.drawRect(this.pos.x - size / 2, this.pos.y - size / 2, size, size)
+        break
       default:
         alert('invalid shape')
     }
@@ -227,6 +231,12 @@ export default class Turtle {
   drawCircle (cx, cy, r) {
     this.ctx.beginPath()
     this.ctx.arc(cx, cy, r, 0 * Math.PI, 2 * Math.PI)
+    this.ctx.stroke()
+  }
+
+  drawRect (x, y, w, h) {
+    this.ctx.beginPath()
+    this.ctx.rect(x, y, w, h)
     this.ctx.stroke()
   }
 }; // end class definition Turtle
