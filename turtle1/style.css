@@ -11,16 +11,22 @@ main {
 .flexbox {
   display: flex;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
+  justify-content:space-around;
+  padding: 10px;
+  flex-direction: column;
 }
 
 canvas {
-  margin: 5px;
+  margin: 10px;
   box-shadow: 1px 1px 5px rgba(25,25,25,.25);
+  flex-grow:0;
 }
 
 .btn-cont {
   display:flex;
+  flex-direction:column;
 }
 
 #comlist {
@@ -33,9 +39,20 @@ canvas {
   padding: 10px;
 }
 
-#comlist ul li {
-  text-align: left;
-  list-style: none;
+#com-cont h2 {
+  text-align: center;
+  text-decoration: underline;
+  text-transform:uppercase;
+  padding: 10px;
+}
+
+
+#comnotes *{
+  text-align: center;
+}
+
+#comnotes li {
+  color: darkslategrey;
 }
 
 header {
@@ -49,4 +66,34 @@ header {
 
 header h4 {
   margin: 5px auto;
+}
+
+li {
+  text-align: left;
+  list-style: none;
+  margin-bottom:5px;
+}
+
+button {
+  margin: 2px;
+  padding: 5px;
+  border: 1px solid darkslategrey;
+  border-radius: 5px;
+}
+
+#prog-form {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px){
+  .flexbox{
+    flex-direction: row;
+    align-items:flex-start;
+  }
+
+  textarea{
+    margin: 10px;
+  }
 }

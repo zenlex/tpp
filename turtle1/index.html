@@ -13,7 +13,6 @@
   <header>
     <h1>Turtle Graphics Engine</h1>
     <h4>an exercise in extensible domain specific languages</h4>
-    <h4>from The Pragmatic Programmer by David Thomas and Andrew Hunt</h4>
   </header>
   <main>
     <div class='flexbox'>
@@ -24,8 +23,24 @@
           <button type="button" id="clear-btn">Clear Canvas</button>
         </div>
       </form>
-      <div id='comlist'></div>
-      <canvas id="turtle-canvas" width=800 height=400></canvas>
+      <div id='com-cont'>
+        <h2>commands</h2>
+        <div id='comlist'></div>
+        <div id='comnotes'>
+          <h4>
+            Syntax:
+          </h4>
+          <ul>
+            <li>
+              <p>
+                'COM'<i>(space)[int]</i>
+              </p>
+                
+            </li>
+          </ul>
+        </div>
+      </div>
+      <canvas id="turtle-canvas"></canvas>
     </div>
   </main>
 </body>
@@ -33,17 +48,25 @@
   import Turtle from './turtle.js'
 
   const canvas = document.getElementById('turtle-canvas')
-
   const turtle = new Turtle(canvas)
+
   function runTurtle(e) {
     e.preventDefault()
     const prog = e.target.prog.value
     turtle.run(prog)
   }
 
+  function resizeView(canvas) {
+    let cw = window.innerWidth * (2 / 3);
+    let ch = window.innerHeight * .8;
+    turtle.resizeCanvas(canvas, cw, ch);
+  };
+
+  resizeView(canvas);
+
   document.querySelector('#prog-form').onsubmit = runTurtle
   document.querySelector('#clear-btn').onclick = turtle.clearCanvas
-
+  window.onresize = () => resizeView(canvas)
   const comlist = document
     .querySelector('#comlist')
     .appendChild(document.createElement('ul'));
