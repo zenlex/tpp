@@ -209,6 +209,7 @@ export default class Turtle {
                 alert(`invalid arg for command ${com[0]} at index ${index}`)
               }
             }
+            com[0] = com[0].toUpperCase()
             return com
           })
 
@@ -221,7 +222,8 @@ export default class Turtle {
     --------------------------------------- */
     const transpile = (comArr) => {
       for (const com of comArr) {
-        const comObj = this.commands.find((command) => command.name === com[0])
+        const comObj =
+        this.commands.find((command) => command.name === com[0])
 
         if (comObj) {
           comObj.handler.call(this, ...com)
