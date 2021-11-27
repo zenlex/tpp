@@ -54,6 +54,9 @@ section {
   justify-content: center;
 }
 
+/*-----------------------------
+    USER REFERENCE SECTION
+-----------------------------*/
 #com-cont {
   display: flex;
   border: 2px solid darkgray;
@@ -90,11 +93,6 @@ section {
   flex-direction: column-reverse;
 }
 
-
-
-
-
-
 #colors li {
   display: flex;
   justify-content: flex-start;
@@ -110,7 +108,9 @@ section {
   border: 1px solid darkgray;
 }
 
-
+/*---------------------------------
+    MEDIA QUERIES
+----------------------------------*/
 @media screen and (min-width: 768px) {
   section {
     flex-direction: row;

@@ -14,78 +14,92 @@
     <h1>Turtle Graphics Engine</h1>
     <h3>an exercise in extensible domain specific languages</h4>
   </header>
+
   <section>
- 
-      <div id='com-cont'>
-        <div id='comlist'>
-          <h3>commands</h3>
-        </div>
-        <div id='comnotes'>
-          <h3>Syntax:</h3>
-          <ul>
-            <li>&lt;command&gt;<i>(space)[int]</i></li>
-            <li>start comments with '#'</li>
-          </ul>
-          <div id="colors">
-            <h3>Color(T) Options:</h3>
-            <ol id="color-list"></ol>
-          </div>
+    <!--INSTRUCTIONS / REFERENCE-->
+    <div id='com-cont'>
+      <div id='comlist'>
+        <h3>commands</h3>
+      </div>
+      <div id='comnotes'>
+        <h3>Syntax:</h3>
+        <ul>
+          <li>&lt;command&gt;<i>(space)[int]</i></li>
+          <li>start comments with '#'</li>
+        </ul>
+        <div id="colors">
+          <h3>Color(T) Options:</h3>
+          <ol id="color-list"></ol>
         </div>
       </div>
-      <form id="prog-form">
-        <div class='btn-cont'>
-          <button type="submit">Run Program</button>
-          <button type="button" id="clear-btn">Clear Canvas</button>
-        </div>
-        <textarea cols=10 rows=20 id="user-prog" name="prog"></textarea>
-      </form>
-      <canvas id="turtle-canvas"></canvas>
-</section>
-<script type='module'>
-  import Turtle from './turtle.js'
+    </div>
+    <!--PROGRAMMER-->
+    <form id="prog-form">
+      <div class='btn-cont'>
+        <button type="submit">Run Program</button>
+        <button type="button" id="clear-btn">Clear Canvas</button>
+      </div>
+      <textarea cols=10 rows=20 id="user-prog" name="prog"></textarea>
+    </form>
+    <!--OUTPUT-->
+    <canvas id="turtle-canvas"></canvas>
+  </section>
 
-  const canvas = document.getElementById('turtle-canvas')
-  const turtle = new Turtle(canvas)
+  <!--INIT TURTLE ENGINE-->
+  <script type='module'>
+    import Turtle from './turtle.js'
 
-  function runTurtle(e) {
-    e.preventDefault()
-    const prog = e.target.prog.value
-    turtle.run(prog)
-  }
+    const canvas = document.getElementById('turtle-canvas')
+    const turtle = new Turtle(canvas)
 
-  function resizeView(canvas) {
-    let cw = window.innerWidth * (1 / 2);
-    let ch = window.innerHeight * .8;
-    turtle.resizeCanvas(canvas, cw, ch);
-  };
+    function runTurtle(e) {
+      e.preventDefault()
+      const prog = e.target.prog.value
+      turtle.run(prog)
+    }
 
-  resizeView(canvas);
+    function resizeView(canvas) {
+      let cw = window.innerWidth * (1 / 2);
+      let ch = window.innerHeight * .8;
+      turtle.resizeCanvas(canvas, cw, ch);
+    };
+    resizeView(canvas);
 
-  document.querySelector('#prog-form').onsubmit = runTurtle
-  document.querySelector('#clear-btn').onclick = turtle.clearCanvas
-  window.onresize = () => resizeView(canvas)
-  const comlist = document
-    .querySelector('#comlist')
-    .appendChild(document.createElement('ul'));
+    /*------------------------
+        HANDLERS
+    ------------------------*/
+    document.querySelector('#prog-form').onsubmit = runTurtle
+    document.querySelector('#clear-btn').onclick = turtle.clearCanvas
+    window.onresize = () => resizeView(canvas)
 
-  turtle.commands.forEach((item) => {
-    const newItem = comlist.appendChild(document.createElement('li'))
-    newItem.innerHTML = `<span>${item.name} ${item.arg ? '#' : ''} - ${item.desc}</span>`
-  })
+    /*-----------------------
+        POPULATE REFERENCE
+    -------------------------*/
 
-  const colorList = document.querySelector('#color-list')
-  turtle.colors.forEach((color, index) => {
-    const newItem = colorList.appendChild(document.createElement('li'))
+    //COMMAND REFERENCE
+    const comlist = document
+      .querySelector('#comlist')
+      .appendChild(document.createElement('ul'));
 
-    const swatch = newItem.appendChild(document.createElement('div'))
-    swatch.classList.add('swatch')
-    swatch.style.backgroundColor = color.hex
+    turtle.commands.forEach((item) => {
+      const newItem = comlist.appendChild(document.createElement('li'))
+      newItem.innerHTML = `<span>${item.name} ${item.arg ? '#' : ''} - ${item.desc}</span>`
+    })
+    
+    //COLOR REFERENCE
+    const colorList = document.querySelector('#color-list')
+    turtle.colors.forEach((color, index) => {
+      const newItem = colorList.appendChild(document.createElement('li'))
 
-    const label = newItem.appendChild(document.createElement('span'))
-    label.classList.add('swatch-label')
-    label.textContent = `${index}-${color.name}`
+      const swatch = newItem.appendChild(document.createElement('div'))
+      swatch.classList.add('swatch')
+      swatch.style.backgroundColor = color.hex
 
-  })
-</script>
+      const label = newItem.appendChild(document.createElement('span'))
+      label.classList.add('swatch-label')
+      label.textContent = `${index}-${color.name}`
+
+    })
+  </script>
 
 </html>
