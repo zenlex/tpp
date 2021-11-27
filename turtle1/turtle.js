@@ -24,6 +24,7 @@ export default class Turtle {
       { name: 'D', arg: false, handler: this.pen, desc: 'Pen Down' },
       { name: 'U', arg: false, handler: this.pen, desc: 'Pen Up' },
       { name: 'T', arg: true, handler: this.pen, desc: 'Change Color' },
+      { name: 'K', arg: true, handler: this.pen, desc: 'Change Thickness' },
       { name: 'O', arg: true, handler: this.pen, desc: 'Change Opacity(0-1)' },
       { name: 'C', arg: true, handler: this.shape, desc: 'Draw Circle(r)' },
       { name: 'R', arg: true, handler: this.shape, desc: 'Draw Square(s)' },
@@ -46,6 +47,7 @@ export default class Turtle {
     this.opacity = 1
     this.fill = this.colors[this.colors
       .indexOf((item) => item.name === 'Transparent')]
+    this.lineWidth = 5
 
     this.clearCanvas = this.clearCanvas.bind(this)
     this.changeColor = this.changeColor.bind(this)
@@ -142,6 +144,10 @@ export default class Turtle {
         break
       case 'O':
         this.changeOpacity(arg)
+        break
+      case 'K':
+        this.lineWidth = arg
+        this.ctx.lineWidth = this.lineWidth
         break
       default:
         console.log('pen called with invalid dir')
