@@ -26,7 +26,8 @@ export default class Turtle {
       { name: 'T', arg: true, handler: this.pen, desc: 'Change Color' },
       { name: 'O', arg: true, handler: this.pen, desc: 'Change Opacity(0-1)' },
       { name: 'C', arg: true, handler: this.shape, desc: 'Draw Circle(r)' },
-      { name: 'R', arg: true, handler: this.shape, desc: 'Draw Square(s)' }
+      { name: 'R', arg: true, handler: this.shape, desc: 'Draw Square(s)' },
+      { name: 'F', arg: true, handler: this.shape, desc: 'Draw Square(s)' }
     ]
 
     this.colors = [
@@ -36,11 +37,15 @@ export default class Turtle {
       { name: 'Raph Red', hex: '#ef4c4d' },
       { name: 'Don Purple', hex: '#8b049f' },
       { name: 'Splinter Brown', hex: '#b7875c' },
-      { name: 'Shredder Silver', hex: '#888' }
+      { name: 'Shredder Silver', hex: '#888' },
+      { name: 'White', hex: '#FFF' },
+      { name: 'Transparent', hex: 'rgba(0,0,0,0)' }
     ]
 
     this.color = this.colors[0]
     this.opacity = 1
+    this.fill = this.colors[this.colors
+      .indexOf((item) => item.name === 'Transparent')]
 
     this.clearCanvas = this.clearCanvas.bind(this)
     this.changeColor = this.changeColor.bind(this)
@@ -151,6 +156,11 @@ export default class Turtle {
       case 'R':
         this.drawRect(this.pos.x - size / 2, this.pos.y - size / 2, size, size)
         break
+      case 'F':
+        this.fill = this.colors[size]
+        this.ctx.fillStyle = this.fill.hex
+        console.log('fillstyle changed to : ', this.fill.hex)
+        break
       default:
         alert('invalid shape')
     }
@@ -232,11 +242,13 @@ export default class Turtle {
     this.ctx.beginPath()
     this.ctx.arc(cx, cy, r, 0 * Math.PI, 2 * Math.PI)
     this.ctx.stroke()
+    this.ctx.fill()
   }
 
   drawRect (x, y, w, h) {
     this.ctx.beginPath()
     this.ctx.rect(x, y, w, h)
     this.ctx.stroke()
+    this.ctx.fill()
   }
 }; // end class definition Turtle
