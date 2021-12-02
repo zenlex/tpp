@@ -1,0 +1,15 @@
+BNF Grammar for Time
+Exercise from 'The Pragmatic Programmer' by David Thomas and Andrew Hunt
+
+<time> := <hour part><minute part>[am/pm]
+
+<hour part> := range 00-24
+<minute part> := range 00-59
+
+
+
+***brainstorming******
+
+- how do you specify when am/pm is required in this format? 
+- how do you specify range in BNF
+- can you reqire things based on logic - eg if we're not in military time than  the am/pm param is required? 
