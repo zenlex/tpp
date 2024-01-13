@@ -8,6 +8,12 @@
  * Dave Thomas and Andrew Hunt
  */
 
+/**
+ * TODO:
+ * Add loop checkbox
+ * Improve UI styling for readability and better instructions
+ * Clean up code / package and publish
+ */
 export default class Turtle {
   constructor (canvas) {
     this.canvas = canvas
